@@ -1,4 +1,4 @@
-# frontline_warrior
+# Template Boilerplate Vuejs
 
 > I am WARRIOR!
 
@@ -7,6 +7,9 @@
 ``` bash
 # install dependencies
 npm install
+
+# Copy paste and change in folder config
+dev.env.js.example -> dev.env.js
 
 # serve with hot reload at localhost:8080
 npm run dev
