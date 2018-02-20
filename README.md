@@ -1,7 +1,3 @@
-# Template Boilerplate Vuejs
-
-> I am WARRIOR!
-
 ## Build Setup
 
 ``` bash
