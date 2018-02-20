@@ -10,6 +10,7 @@ npm install
 
 # Copy paste and change in folder config
 dev.env.js.example -> dev.env.js
+prod.env.js.example -> prod.env.js
 
 # serve with hot reload at localhost:8080
 npm run dev
