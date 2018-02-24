@@ -1,60 +1,21 @@
 <template>
-  <section class="content">
+  <section class="content margin-top-6 margin-bottom-3">
     <!-- start:Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <div class="container">
-        <a class="navbar-brand" href="#">Navbar</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-          <div class="navbar-nav">
-            <a class="nav-item nav-link active" href="#">Home <span class="sr-only">(current)</span></a>
-            <a class="nav-item nav-link" href="#">Features</a>
-            <a class="nav-item nav-link" href="#">Pricing</a>
-            <a class="nav-item nav-link disabled" href="#">Disabled</a>
-          </div>
-        </div>
-      </div>
-    </nav>
+    <Navbar></Navbar>
     <!-- end:/Navbar -->
 
-    <div class="content-page">
+    <div class="content-page margin-top-3 margin-bottom-3">
       <div class="container">
         <div class="row">
-          <div class="col-md-8">
-            <div class="card">
-              <div class="card-body">
-                <h6 class="card-subtitle mb-2 text-muted">Create Post</h6>
-                <form action="">
-                  <div class="form-group">
-                    <textarea class="form-control" rows="3"></textarea>
-                  </div>
-                  <button type="button" class="btn btn-secondary float-right">Create Post</button>
-                </form>
-              </div>
+            <div v-for="user in users" class="col-lg-3 col-sm-6">
+              <router-link :to="{ name: 'page_profile_by_user', params: { user_id: user.id } }" class="card card--user text-center">
+                <img class="card-img-top" src="http://via.placeholder.com/400x400" alt="Card image cap">
+                <div class="card-body">
+                  <h6 class="card-title">{{ user.name }}</h6>
+                  <p><span class="badge badge-light size-12">{{ user.email }}</span></p>
+                </div>
+              </router-link>
             </div>
-
-            <div class="card card--post">
-              <div class="card-body">
-                <h5 class="card-title">Jhon Doe</h5>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium dolore excepturi fugiat iusto libero molestias, non numquam odio optio repellat repudiandae soluta ullam. Cupiditate dignissimos illo, iusto neque nobis possimus?</p>
-                <form action="">
-                  <div class="form-group">
-                    <textarea class="form-control" rows="3"></textarea>
-                  </div>
-                  <button type="button" class="btn btn-light float-right">Create Comment</button>
-                </form>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="card">
-              <div class="card-body">
-                <h6 class="card-subtitle mb-2 text-muted">List User</h6>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
     </div>
@@ -62,35 +23,36 @@
 </template>
 
 <script>
-  import Example from '@/components/example'
+  import Navbar from '@/components/layouts/navbar'
 
   export default {
-    name      : 'home',
+    name      : 'beranda',
     components: {
-      Example
+      Navbar
     },
     mounted   : function () {
-      this.getUser(1)
+      this.getUser();
     },
     data () {
       return {
-        msg : 'I am Home Page',
-        user: {}
+        msg: 'I am Home Page',
+        users: [],
       }
     },
-    methods   : {
+    methods : {
       setMessage: function () {
         this.$store.commit('SET_MESSAGE', 'Mutation')
       },
-      getUser   : function (id) {
-        this.$Progress.start()
-        this.$service.users.getUser({id: id}).subscribe(
+      // for get all user
+      getUser : function (id) {
+        this.$Progress.start();
+        this.$service.users.getUser({}).subscribe(
           function (response) {
-            this.user = response
+            this.users = response;
             this.$Progress.finish()
           }.bind(this),
           function (errors) {
-            console.log('onError %s', errors)
+            console.log('onError %s', errors);
             this.$Progress.fail()
           }.bind(this)
         )

@@ -1,137 +1,76 @@
 <template>
-  <section class="content">
-    <!-- start:Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <div class="container">
-        <a class="navbar-brand" href="#">Dashboard Sosmed</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-      </div>
-    </nav>
-    <!-- end:/Navbar -->
+  <section class="content margin-top-6 margin-bottom-3">
+    <!-- start:navbar -->
+    <Navbar></Navbar>
+    <!-- end:/navbar -->
 
-    <div class="content-page margin-top-3">
+    <div class="content-page margin-top-3 margin-bottom-3">
       <div class="container">
         <div class="row">
-          <div class="col-md-8">
-            <div class="card card--grey-light">
-              <div class="card-body">
-                <h6 class="card-subtitle mb-2 text-muted">Create Post</h6>
-                <form action="">
-                  <div class="form-group">
-                    <textarea class="form-control" rows="3"></textarea>
-                  </div>
-                  <button type="button" class="btn btn-secondary float-right">Create Post</button>
-                </form>
-              </div>
-            </div>
-
-            <div class="card card--post margin-top-2">
-              <div class="card-body">
-                <div class="card-body__top">
-                  <h5 class="card-title d-inline">Jhon Doe</h5>
-                  <div class="action-card d-inline float-right">
-                    <i class="fa fa-ellipsis-v"></i>
-                    <div class="action-item">
-                      <ul class="list-unstyled">
-                        <li><i class="fa fa-pencil"></i> Edit</li>
-                        <li><i class="fa fa-trash"></i> Delete</li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium dolore excepturi fugiat iusto libero molestias, non numquam odio optio repellat repudiandae soluta ullam. Cupiditate dignissimos illo, iusto neque nobis possimus?</p>
-                <form action="">
-                  <div class="form-group">
-                    <textarea class="form-control" rows="3"></textarea>
-                  </div>
-                  <button type="button" class="btn btn-light float-right">Create Comment</button>
-                </form>
-              </div>
-
-              <div class="card-body">
-                <div class="card card--grey-light">
-                  <div class="card-body">
-                    <div class="comment">
-                      <div class="card-body__top">
-                        <h6 class="card-subtitle mb-2 text-muted d-inline">Taqim</h6>
-                        <div class="action-card d-inline float-right">
-                          <i class="fa fa-ellipsis-v"></i>
-                          <div class="action-item">
-                            <ul class="list-unstyled">
-                              <li><i class="fa fa-pencil"></i> Edit</li>
-                              <li><i class="fa fa-trash"></i> Delete</li>
-                            </ul>
-                          </div>
-                        </div>
-                      </div>
-                      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad aliquid commodi delectus deserunt doloremque expedita illum, iusto laudantium, magni non officiis placeat possimus qui quibusdam ratione, saepe sed tempora tenetur.</p>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="card card--grey-light margin-top-1">
-                  <div class="card-body">
-                    <div class="comment">
-                      <div class="card-body__top">
-                        <h6 class="card-subtitle mb-2 text-muted d-inline">Iqbal Taqim</h6>
-                        <div class="action-card d-inline float-right">
-                          <i class="fa fa-ellipsis-v"></i>
-                          <div class="action-item">
-                            <ul class="list-unstyled">
-                              <li><i class="fa fa-pencil"></i> Edit</li>
-                              <li><i class="fa fa-trash"></i> Delete</li>
-                            </ul>
-                          </div>
-                        </div>
-                      </div>
-                      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad aliquid commodi delectus deserunt doloremque expedita illum, iusto laudantium, magni non officiis placeat possimus qui quibusdam ratione, saepe sed tempora tenetur.</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="card card--post margin-top-2">
-              <div class="card-body">
-                <div class="card-body__top">
-                  <h5 class="card-title d-inline">Jhon Doe</h5>
-                  <div class="action-card d-inline float-right">
-                    <i class="fa fa-ellipsis-v"></i>
-                    <div class="action-item">
-                      <ul class="list-unstyled">
-                        <li><i class="fa fa-pencil"></i> Edit</li>
-                        <li><i class="fa fa-trash"></i> Delete</li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium dolore excepturi fugiat iusto libero molestias, non numquam odio optio repellat repudiandae soluta ullam. Cupiditate dignissimos illo, iusto neque nobis possimus?</p>
-                <form action="">
-                  <div class="form-group">
-                    <textarea class="form-control" rows="3"></textarea>
-                  </div>
-                  <button type="button" class="btn btn-light float-right">Create Comment</button>
-                </form>
-              </div>
-            </div>
-
-          </div>
           <div class="col-md-4">
+            <!-- start:sidebar -->
             <div class="card">
               <div class="card-body">
-                <h6 class="card-subtitle mb-2 text-muted">List User</h6>
-                <ul class="list-unstyled margin-top-1">
-                  <li v-for="userSosmed in user" class="margin-bottom-1">
-                    <a href="#">
-                      <img class="margin-right-1 d-inline" width="35" src="../../assets/images/avatar.svg" alt="">
-                      <span class="d-inline">{{ userSosmed.name }}</span>
-                    </a>
-                  </li>
-                </ul>
+                <img class="margin-right-1 d-inline" width="100%" src="http://via.placeholder.com/400x400" alt="">
+                <div class="description margin-top-1">
+                  <h5>{{ user.name }}</h5>
+                  <p><span class="badge badge-secondary size-12"><i class="fa fa-envelope margin-right-1"></i>{{ user.email }}</span></p>
+                  <p><span class="badge badge-secondary size-12"><i class="fa fa-phone margin-right-1"></i> {{ user.phone }}</span></p>
+                  <p><span class="badge badge-secondary size-12"><i class="fa fa-globe margin-right-1"></i> {{ user.website }}</span></p>
+                </div>
               </div>
             </div>
+            <div class="list-group margin-top-2 margin-bottom-2">
+              <router-link class="list-group-item list-group-item-action" :to="{}"><i class="fa fa-home" aria-hidden="true"></i> Wall</router-link>
+              <router-link class="list-group-item list-group-item-action" :to="{ name: 'page_albums_by_user', params: { albums_id: user.id } }"><i class="fa fa-picture-o" aria-hidden="true"></i> Albums</router-link>
+            </div>
+            <!-- end:/sidebar -->
+          </div>
+          <div class="col-md-8">
+            <!-- start:create post -->
+            <div class="card card--grey-light margin-bottom-1">
+              <div class="card-body">
+                <h6 v-if="!isUpdate" class="card-subtitle mb-2 text-muted">Create Post</h6>
+                <h6 v-if="isUpdate" class="card-subtitle mb-2 text-muted">Edit Post</h6>
+                <form action="">
+                  <div class="form-group">
+                    <input v-model="inputPost.title" type="text" class="form-control" placeholder="Title Post">
+                  </div>
+                  <div class="form-group">
+                    <textarea v-model="inputPost.body" class="form-control" rows="4" placeholder="Description"></textarea>
+                  </div>
+                  <button v-if="!isUpdate" v-on:click="addPost" type="button" class="btn btn-secondary float-right"><i class="fa fa-plus-circle" aria-hidden="true"></i> Create Post</button>
+                  <button v-if="isUpdate" v-on:click="updatePost" type="button" class="btn btn-success margin-left-1 float-right"><i class="fa fa-pencil" aria-hidden="true"></i> Update Post</button>
+                  <button v-if="isUpdate" v-on:click="cancelEdit" type="button" class="btn btn-danger float-right"><i class="fa fa-close" aria-hidden="true"></i> Cancel</button>
+                </form>
+              </div>
+            </div>
+            <!-- end:/create post -->
+
+            <!-- start:posts items -->
+            <div v-for="(post, index) in posts" class="card card--post margin-bottom-1">
+              <div class="card-body">
+                <div class="card-body__top">
+                  <h5 class="card-title d-inline">{{ post.title }}</h5>
+                  <div class="action-card d-inline float-right">
+                    <i class="fa fa-ellipsis-v"></i>
+                    <div class="action-item">
+                      <ul class="list-unstyled">
+                        <li v-on:click="editPost(index)" class="pointer"><i class="fa fa-pencil"></i> Edit</li>
+                        <li v-on:click="deletePost(index)" class="pointer"><i class="fa fa-trash"></i> Delete</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <p class="margin-top-1">{{ post.body }}</p>
+                <form action="">
+                  <router-link :to="{ name: 'page_post_by_user', params: { post_id: post.id } }">
+                    <button type="button" class="btn btn-light float-right"><i class="fa fa-comments" aria-hidden="true"></i> Comment</button>
+                  </router-link>
+                </form>
+              </div>
+            </div>
+            <!-- end:/posts items -->
           </div>
         </div>
       </div>
@@ -140,38 +79,117 @@
 </template>
 
 <script>
-  import Example from '@/components/example'
+  import Navbar from '@/components/layouts/navbar'
 
   export default {
-    name      : 'beranda',
+    name : 'profile',
     components: {
-      Example
+      Navbar
     },
     mounted   : function () {
-      this.getUser();
+      this.getUserById(this.$route.params.user_id);
+      this.getPostById(this.$route.params.user_id);
     },
     data () {
       return {
         msg : 'I am Home Page',
-        user: {}
+        inputPost: {
+          userId: '',
+          id: '',
+          title: '',
+          body: ''
+        },
+        indexEditPost: null,
+        isUpdate: false,
+        user: {},
+        posts: []
       }
     },
     methods : {
       setMessage: function () {
         this.$store.commit('SET_MESSAGE', 'Mutation')
       },
-      getUser : function (id) {
+      // for get user by id
+      getUserById: function (id) {
         this.$Progress.start();
-        this.$service.users.getUser({id: id}).subscribe(
+        this.$service.users.getUserById({id: id}).subscribe(
           function (response) {
             this.user = response;
             this.$Progress.finish()
           }.bind(this),
           function (errors) {
-            console.log('onError %s', errors)
+            console.log('onError %s', errors);
             this.$Progress.fail()
           }.bind(this)
         )
+      },
+      // for get post by id
+      getPostById: function (id) {
+        this.$Progress.start();
+        this.$service.posts.getPostById({id: id}).subscribe(
+          function (response) {
+            this.posts = response;
+            this.$Progress.finish()
+          }.bind(this),
+          function (errors) {
+            console.log('onError %s', errors);
+            this.$Progress.fail()
+          }.bind(this)
+        )
+      },
+      // for add post
+      addPost: function () {
+        this.inputPost.userId = this.user.id;
+        this.inputPost.id = 4444;
+        this.posts.unshift(this.inputPost);
+        this.inputPost = {
+          userId: '',
+          id: '',
+          title: '',
+          body: ''
+        }
+      },
+      // for edit post
+      editPost: function (index) {
+        this.indexEditPost = index;
+        this.isUpdate = true;
+        this.inputPost = {
+          userId: this.posts[index].userId,
+          id: this.posts[index].id,
+          title: this.posts[index].title,
+          body: this.posts[index].body
+        }
+      },
+      // for update post
+      updatePost: function () {
+        this.isUpdate = false;
+        this.posts[this.indexEditPost] = {
+          userId: this.inputPost.userId,
+          id: this.inputPost.id,
+          title: this.inputPost.title,
+          body: this.inputPost.body
+        };
+        this.inputPost = {
+          userId: '',
+          id: '',
+          title: '',
+          body: ''
+        }
+      },
+      // for cancel edit post
+      cancelEdit: function () {
+        this.isUpdate = false;
+        this.indexEditPost = null;
+        this.inputPost = {
+          userId: '',
+          id: '',
+          title: '',
+          body: ''
+        }
+      },
+      // for delete post
+      deletePost: function (index) {
+        this.posts.splice(index, 1);
       }
     }
   }

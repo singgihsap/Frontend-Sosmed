@@ -1,74 +1,44 @@
 <template>
   <section class="content margin-top-6 margin-bottom-3">
-    <!-- start:Navbar -->
+    <!-- start:navbar -->
     <Navbar></Navbar>
-    <!-- end:/Navbar -->
+    <!-- end:/navbar -->
 
     <div class="content-page margin-top-3 margin-bottom-3">
       <div class="container">
         <div class="row">
           <div class="col-md-4">
+            <!-- start:sidebar -->
             <div class="card">
               <div class="card-body">
                 <img class="margin-right-1 d-inline" width="100%" src="http://via.placeholder.com/400x400" alt="">
                 <div class="description margin-top-1">
-                  <h5>Jhone</h5>
-                  <p>jhondoe@mail.com</p>
-                  <p>Phone +62 600 1029</p>
+                  <h5>{{ user.name }}</h5>
+                  <p><span class="badge badge-secondary size-12"><i class="fa fa-envelope margin-right-1"></i>{{ user.email }}</span></p>
+                  <p><span class="badge badge-secondary size-12"><i class="fa fa-phone margin-right-1"></i> {{ user.phone }}</span></p>
+                  <p><span class="badge badge-secondary size-12"><i class="fa fa-globe margin-right-1"></i> {{ user.website }}</span></p>
                 </div>
               </div>
             </div>
-
-            <div class="list-group margin-top-2">
-              <router-link class="list-group-item list-group-item-action" :to="{ name: 'page_profile_by_user', params: { user_id } }"><i class="fa fa-home" aria-hidden="true"></i> Wall</router-link>
-              <router-link class="list-group-item list-group-item-action" :to="{ name: 'page_profile_by_user' }"><i class="fa fa-picture-o" aria-hidden="true"></i> Albums</router-link>
+            <div class="list-group margin-top-2 margin-bottom-2">
+              <router-link class="list-group-item list-group-item-action" :to="{ name: 'page_profile_by_user', params: { user_id: user.id } }"><i class="fa fa-home" aria-hidden="true"></i> Wall</router-link>
+              <router-link class="list-group-item list-group-item-action" :to="{ }"><i class="fa fa-picture-o" aria-hidden="true"></i> Albums</router-link>
             </div>
+            <!-- end:/sidebar -->
           </div>
-
           <div class="col-md-8">
-            <div class="card card--post">
-              <div class="card-body">
-                <div class="card-body__top margin-bottom-1">
-                  <h5 class="card-title d-inline">Jhon Doe</h5>
-                </div>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium dolore excepturi fugiat iusto libero molestias, non numquam odio optio repellat repudiandae soluta ullam. Cupiditate dignissimos illo, iusto neque nobis possimus?</p>
-              </div>
-
-              <div class="card-body">
-                <!-- start:comments -->
-                <div v-for="comment in comments" class="card card--grey-light margin-bottom-1">
+            <div class="row">
+              <div v-for="album in albums" class="col-md-4">
+                <router-link :to="{ name: 'page_photos_by_user', params: { albums_id: album.id } }">
+                <div class="card card--albums">
+                  <img src="../../assets/images/albums.jpg" alt="">
                   <div class="card-body">
-                    <div class="comment">
-                      <div class="card-body__top margin-bottom-1">
-                        <h6 class="card-subtitle mb-2 text-muted d-inline">{{ comment.email }}</h6>
-                        <div class="action-card d-inline float-right">
-                          <i class="fa fa-ellipsis-v"></i>
-                          <div class="action-item">
-                            <ul class="list-unstyled">
-                              <li><i class="fa fa-pencil"></i> Edit</li>
-                              <li><i class="fa fa-trash"></i> Delete</li>
-                            </ul>
-                          </div>
-                        </div>
-                      </div>
-                      <p>{{ comment.body }}</p>
-                    </div>
+                    <p class="card-body__albums-name">{{ album.title }}</p>
                   </div>
                 </div>
-                <!-- end:/comments -->
-
-                <form action="" class="margin-top-2">
-                  <div class="form-group">
-                    <label>Type Your Comments</label>
-                  </div>
-                  <div class="form-group">
-                    <textarea class="form-control" rows="3"></textarea>
-                  </div>
-                  <button type="button" class="btn btn-light float-right">Create Comment</button>
-                </form>
+                </router-link>
               </div>
             </div>
-
           </div>
         </div>
       </div>
@@ -80,32 +50,32 @@
   import Navbar from '@/components/layouts/navbar'
 
   export default {
-    name : 'profile',
+    name : 'Page Albums',
     components: {
       Navbar
     },
     mounted   : function () {
-      this.getUser();
-      this.getPost();
-      this.getComments();
+      this.getUserById(this.$route.params.user_id);
+      this.getAlbumsById(this.$route.params.user_id);
     },
     data () {
       return {
-        msg : 'I am Home Page',
-        users: [],
-        posts: [],
-        comments: []
+        msg : 'Page Albums',
+        user: {},
+        albums: [],
+        photos: []
       }
     },
     methods : {
       setMessage: function () {
         this.$store.commit('SET_MESSAGE', 'Mutation')
       },
-      getUser : function (id) {
+      // for get user by id
+      getUserById: function (id) {
         this.$Progress.start();
-        this.$service.users.getUser({}).subscribe(
+        this.$service.users.getUserById({id: id}).subscribe(
           function (response) {
-            this.users = response;
+            this.user = response;
             this.$Progress.finish()
           }.bind(this),
           function (errors) {
@@ -114,11 +84,12 @@
           }.bind(this)
         )
       },
-      getPost : function (id) {
+      // for get post by id
+      getAlbumsById: function (id) {
         this.$Progress.start();
-        this.$service.posts.getPost({}).subscribe(
+        this.$service.albums.getAlbumsById({id: id}).subscribe(
           function (response) {
-            this.posts = response;
+            this.albums = response;
             this.$Progress.finish()
           }.bind(this),
           function (errors) {
@@ -127,11 +98,12 @@
           }.bind(this)
         )
       },
-      getComments : function (id) {
+      // for get post by id
+      getPhotosById: function (id) {
         this.$Progress.start();
-        this.$service.comments.getComments({}).subscribe(
+        this.$service.albums.getPhotosById({id: id}).subscribe(
           function (response) {
-            this.comments = response;
+            this.photos = response;
             this.$Progress.finish()
           }.bind(this),
           function (errors) {

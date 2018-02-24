@@ -22,19 +22,34 @@
             </div>
             <div class="list-group margin-top-2 margin-bottom-2">
               <router-link class="list-group-item list-group-item-action" :to="{ name: 'page_profile_by_user', params: { user_id: user.id } }"><i class="fa fa-home" aria-hidden="true"></i> Wall</router-link>
-              <router-link class="list-group-item list-group-item-action" :to="{ }"><i class="fa fa-picture-o" aria-hidden="true"></i> Albums</router-link>
+              <router-link class="list-group-item list-group-item-action" :to="{ name: 'page_albums_by_user', params: { user_id: user.id } }"><i class="fa fa-picture-o" aria-hidden="true"></i> Albums</router-link>
             </div>
             <!-- end:/sidebar -->
           </div>
+
           <div class="col-md-8">
             <div class="row">
-              <div v-for="album in albums" class="col-md-4">
-                <div class="card card--albums">
-                  <img src="../../assets/images/albums.jpg" alt="">
+              <div v-for="(photo, index) in photos" class="col-lg-3 col-sm-6">
+                <!-- start:for card photos -->
+                <div data-toggle="modal" :data-target="'#modalView'+photo.id" class="card card--albums pointer">
+                  <img v-bind:src="photo.thumbnailUrl" class="img-fluid">
                   <div class="card-body">
-                    <p class="card-body__albums-name">{{ album.title }}</p>
+                    <p class="card-body__albums-name">{{ photo.title }}</p>
                   </div>
                 </div>
+                <!-- end:/for card photos -->
+
+                <!-- start:modal photo details -->
+                <div class="modal" :id="'modalView'+photo.id" tabindex="-1" role="dialog">
+                  <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                      <div class="modal-body">
+                        <img v-bind:src="photo.url" class="img-fluid rounded mx-auto d-block">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- end:/modal photo details -->
               </div>
             </div>
           </div>
@@ -48,19 +63,19 @@
   import Navbar from '@/components/layouts/navbar'
 
   export default {
-    name : 'profile',
+    name : 'Page Photos',
     components: {
       Navbar
     },
     mounted   : function () {
       this.getUserById(this.$route.params.user_id);
-      this.getAlbumsById(this.$route.params.user_id);
+      this.getPhotosById(this.$route.params.user_id);
     },
     data () {
       return {
-        msg : 'I am Home Page',
+        msg : 'Page Photos',
+        showModal: false,
         user: {},
-        albums: [],
         photos: []
       }
     },
@@ -74,20 +89,6 @@
         this.$service.users.getUserById({id: id}).subscribe(
           function (response) {
             this.user = response;
-            this.$Progress.finish()
-          }.bind(this),
-          function (errors) {
-            console.log('onError %s', errors);
-            this.$Progress.fail()
-          }.bind(this)
-        )
-      },
-      // for get post by id
-      getAlbumsById: function (id) {
-        this.$Progress.start();
-        this.$service.albums.getAlbumsById({id: id}).subscribe(
-          function (response) {
-            this.albums = response;
             this.$Progress.finish()
           }.bind(this),
           function (errors) {
