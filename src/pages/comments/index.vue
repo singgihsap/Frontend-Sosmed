@@ -22,7 +22,7 @@
             </div>
             <div class="list-group margin-top-2">
               <router-link class="list-group-item list-group-item-action" :to="{ name: 'page_profile_by_user', params: { user_id: user.id } }"><i class="fa fa-home" aria-hidden="true"></i> Wall</router-link>
-              <router-link class="list-group-item list-group-item-action" :to="{}"><i class="fa fa-picture-o" aria-hidden="true"></i> Albums</router-link>
+              <router-link class="list-group-item list-group-item-action" :to="{ name: 'page_albums_by_user', params: { albums_id: user.id } }"><i class="fa fa-picture-o" aria-hidden="true"></i> Albums</router-link>
             </div>
             <!-- end:/sidebar -->
           </div>
@@ -100,6 +100,7 @@
       this.getPostCommentsById(this.$route.params.post_id);
       this.getCommentsById(this.$route.params.post_id);
       this.getUserById(this.$route.params.user_id);
+      this.getPhotosById(this.$route.params.user_id);
     },
     data () {
       return {
