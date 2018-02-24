@@ -1,0 +1,23 @@
+.pointer {
+  cursor: pointer;
+}
+
+a {
+  color: #343a40;
+
+  @include on-event {
+    color: lighten(#0b4e90, 5%);
+  }
+}
+
+.size-12 {
+  font-size: 12px;
+}
+
+.size-14 {
+  font-size: 14px;
+}
+
+.size-16 {
+  font-size: 16px;
+}

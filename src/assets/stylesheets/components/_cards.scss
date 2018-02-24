@@ -1,0 +1,73 @@
+.card {
+  border-radius: 4px;
+
+  // Background Color
+  @include modifier('grey-light') {
+    background-color: $grey-light;
+  }
+
+  // Modifier Card
+  @include modifier('user') {
+    margin-bottom: 30px;
+
+    @include on-event {
+      border-color: #dfdfdf;
+      -webkit-box-shadow: 0px 0px 23px 5px rgba(0,0,0,0.09);
+      -moz-box-shadow: 0px 0px 23px 5px rgba(0,0,0,0.09);
+      box-shadow: 0px 0px 23px 5px rgba(0,0,0,0.09);
+    }
+  }
+
+  @include modifier('albums') {
+    margin-bottom: 30px;
+
+    @include on-event {
+      -webkit-box-shadow: 0px 0px 23px 5px rgba(0,0,0,0.09);
+      -moz-box-shadow: 0px 0px 23px 5px rgba(0,0,0,0.09);
+      box-shadow: 0px 0px 23px 5px rgba(0,0,0,0.09);
+    }
+  }
+
+  .card-body {
+    @include element('top') {
+      .action-card {
+        @include on-event {
+          .action-item {
+            display: block;
+          }
+        }
+
+        i {
+          position: relative;
+          padding: 0 5px;
+        }
+
+        .action-item {
+          display: none;
+          position: absolute;
+          background-color: #fff;
+          border-radius: 4px;
+          top: 23px;
+          right: 30px;
+          -webkit-box-shadow: 2px 2px 34px -1px rgba(0,0,0,0.1);
+          -moz-box-shadow: 2px 2px 34px -1px rgba(0,0,0,0.1);
+          box-shadow: 2px 2px 34px -1px rgba(0,0,0,0.1);
+
+          ul {
+            margin-bottom: 0;
+
+            li {
+              padding: 5px 10px;
+            }
+          }
+        }
+      }
+    }
+
+    @include element('albums-name') {
+      height: 46px;
+      overflow: hidden;
+      margin-bottom: 0;
+    }
+  }
+}
