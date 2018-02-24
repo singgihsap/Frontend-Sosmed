@@ -1,7 +1,6 @@
 <template>
   <div id="app">
     <vue-progress-bar></vue-progress-bar>
-    <img src="../assets/logo.png">
     <router-view></router-view>
   </div>
 </template>
