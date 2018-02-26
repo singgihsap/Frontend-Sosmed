@@ -63,7 +63,7 @@
   import Navbar from '@/components/layouts/navbar'
 
   export default {
-    name : 'Page Photos',
+    name : 'page_post_by_user',
     components: {
       Navbar
     },

@@ -28,6 +28,7 @@
           </div>
           <div class="col-md-8">
             <div class="row">
+
               <div v-for="album in albums" class="col-md-4">
                 <router-link :to="{ name: 'page_photos_by_user', params: { albums_id: album.id } }">
                 <div class="card card--albums">
@@ -50,7 +51,7 @@
   import Navbar from '@/components/layouts/navbar'
 
   export default {
-    name : 'Page Albums',
+    name : 'page_albums_by_user',
     components: {
       Navbar
     },

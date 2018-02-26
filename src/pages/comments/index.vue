@@ -100,7 +100,6 @@
       this.getPostCommentsById(this.$route.params.post_id);
       this.getCommentsById(this.$route.params.post_id);
       this.getUserById(this.$route.params.user_id);
-      this.getPhotosById(this.$route.params.user_id);
     },
     data () {
       return {
@@ -169,13 +168,16 @@
       addComments : function () {
         this.inputComments.postId = this.posts.id;
         this.inputComments.id = 5555;
-        this.comments.push(this.inputComments);
-        this.inputComments = {
-          postId: '',
-          id: '',
-          name: '',
-          email: '',
-          body: ''
+        const {name, email, body} = this.inputComments;
+        if ( (name.length > 0) && (email.length > 0) && (body.length > 0) ) {
+          this.comments.push(this.inputComments);
+          this.inputComments = {
+            postId: '',
+            id: '',
+            name: '',
+            email: '',
+            body: ''
+          }
         }
       },
       // for edit comments

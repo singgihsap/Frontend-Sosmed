@@ -141,12 +141,14 @@
       addPost: function () {
         this.inputPost.userId = this.user.id;
         this.inputPost.id = 4444;
-        this.posts.unshift(this.inputPost);
-        this.inputPost = {
-          userId: '',
-          id: '',
-          title: '',
-          body: ''
+        if ( (this.inputPost.title.length > 0) && (this.inputPost.body.length > 0) ) {
+          this.posts.unshift(this.inputPost);
+          this.inputPost = {
+            userId: '',
+            id: '',
+            title: '',
+            body: ''
+          }
         }
       },
       // for edit post
